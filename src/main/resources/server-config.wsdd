@@ -11,7 +11,7 @@
   <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <parameter name="sendXsiTypes" value="true"/>
   <requestFlow>
-   <handler name="JWTHandler" type="java:local.axis.handlers.JWTHandler"/>
+   <handler name="JWTHandler" type="java:com.example.handlers.JWTHandler"/>
   </requestFlow>
  </globalConfiguration>
  <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>

@@ -1,0 +1,51 @@
+<definitions name = "DownStreamService"
+             targetNamespace = "http://www.examples.com/wsdl/DownStreamService.wsdl"
+             xmlns = "http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap = "http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns = "http://www.examples.com/wsdl/DownStreamService.wsdl"
+             xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
+
+    <message name = "SayDownStreamRequest">
+        <part name = "firstName" type = "xsd:string"/>
+    </message>
+
+    <message name = "SayDownStreamResponse">
+        <part name = "greeting" type = "xsd:string"/>
+    </message>
+
+    <portType name = "DownStream_PortType">
+        <operation name = "sayDownStream">
+            <input message = "tns:SayDownStreamRequest"/>
+            <output message = "tns:SayDownStreamResponse"/>
+        </operation>
+    </portType>
+
+    <binding name = "DownStream_Binding" type = "tns:DownStream_PortType">
+        <soap:binding style = "rpc"
+                      transport = "http://schemas.xmlsoap.org/soap/http"/>
+        <operation name = "sayDownStream">
+            <soap:operation soapAction = "sayDownStream"/>
+            <input>
+                <soap:body
+                        encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+                        namespace = "urn:examples:DownStreamservice"
+                        use = "encoded"/>
+            </input>
+
+            <output>
+                <soap:body
+                        encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+                        namespace = "urn:examples:DownStreamservice"
+                        use = "encoded"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name = "DownStream_Service">
+        <documentation>WSDL File for DownStreamService</documentation>
+        <port binding = "tns:DownStream_Binding" name = "DownStream_Port">
+            <soap:address
+                    location = "http://www.examples.com/SayDownStream/" />
+        </port>
+    </service>
+</definitions>

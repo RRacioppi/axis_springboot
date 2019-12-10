@@ -2,10 +2,10 @@
 <deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
     <globalConfiguration>
         <requestFlow>
-            <handler name="log" type="java:local.axis.handlers.DownStreamHandler"/>
+            <handler name="log" type="java:com.example.handlers.DownStreamHandler"/>
         </requestFlow>
         <responseFlow>
-            <handler name="log" type="java:local.axis.handlers.DownStreamHandler"/>
+            <handler name="log" type="java:com.example.handlers.DownStreamHandler"/>
         </responseFlow>
     </globalConfiguration>
     <transport name="http" pivot="java:org.apache.axis.transport.http.HTTPSender"/>
