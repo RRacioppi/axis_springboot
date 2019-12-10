@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="C:\Progs\spring-axis\spring-axis-1\src\main\webapp\WEB-INF\attachments"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <requestFlow>
+   <handler name="JWTHandler" type="java:local.axis.handlers.JWTHandler"/>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+<service name="Hello_Port" provider="java:RPC" style="rpc" use="encoded">
+   <parameter name="wsdlTargetNamespace" value="http://www.examples.com/wsdl/HelloService.wsdl"/>
+   <parameter name="wsdlServiceElement" value="Hello_Service"/>
+   <parameter name="wsdlServicePort" value="Hello_Port"/>
+   <parameter name="className" value="local.service.Service_Hello_BindingImpl"/>
+   <parameter name="wsdlPortType" value="Hello_PortType"/>
+   <parameter name="typeMappingVersion" value="1.1"/>
+   <operation name="sayHello" qname="operNS:sayHello" xmlns:operNS="urn:examples:helloservice" returnQName="greeting" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="sayHello" >
+     <parameter qname="firstName" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+   </operation>
+   <parameter name="allowedMethods" value="sayHello"/>
+</service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>
