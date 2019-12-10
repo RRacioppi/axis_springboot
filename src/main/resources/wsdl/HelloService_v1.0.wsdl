@@ -1,0 +1,60 @@
+<definitions name="HelloService_v1.0" targetNamespace="http://www.examples.com/wsdl/HelloService/v1"
+             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.examples.com/wsdl/HelloService/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <message name="SayHelloMessage">
+        <part name="firstName" type="xsd:string"/>
+    </message>
+
+    <message name="SayHelloResponseMessage">
+        <part name="greeting" type="xsd:string"/>
+    </message>
+
+    <message name="SayEchoMessage">
+        <part name="firstName" type="xsd:string"/>
+    </message>
+
+    <message name="SayEchoResponseMessage">
+        <part name="greeting" type="xsd:string"/>
+    </message>
+
+    <portType name="HelloPortType_v1">
+        <operation name="sayHello">
+            <input message="tns:SayHelloMessage"/>
+            <output message="tns:SayHelloResponseMessage"/>
+        </operation>
+        <operation name="sayEcho">
+            <input message="tns:SayEchoMessage"/>
+            <output message="tns:SayEchoResponseMessage"/>
+        </operation>
+    </portType>
+
+    <binding name="HelloServiceBinding" type="tns:HelloPortType_v1">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="sayHello">
+            <soap:operation soapAction="sayHello"/>
+            <input>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:examples:helloservice" use="encoded"/>
+            </input>
+            <output>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:examples:helloservice" use="encoded"/>
+            </output>
+        </operation>
+        <operation name="sayEcho">
+            <soap:operation soapAction="sayEcho"/>
+            <input>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:examples:helloservice" use="encoded"/>
+            </input>
+            <output>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:examples:helloservice" use="encoded"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="HelloService_v1">
+        <documentation>WSDL File for HelloService</documentation>
+        <port binding="tns:HelloServiceBinding" name="HelloServicePort">
+            <soap:address location="http://localhost:8080/services/HelloServicePort"/>
+        </port>
+    </service>
+</definitions>

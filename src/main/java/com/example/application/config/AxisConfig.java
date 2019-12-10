@@ -6,6 +6,7 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
 @Configuration
 public class AxisConfig {
     public AxisConfig() {
@@ -13,7 +14,7 @@ public class AxisConfig {
 
     @Bean
     public ServletRegistrationBean axisServletRegistrationBean() {
-        ServletRegistrationBean servletBean = new ServletRegistrationBean(new AxisServlet(), new String[]{"/axis/*"});
+        ServletRegistrationBean servletBean = new ServletRegistrationBean(new AxisServlet(), new String[]{"/services/*"});
         return servletBean;
     }
 
