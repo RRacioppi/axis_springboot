@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example.application.config;
 
 import org.apache.axis.transport.http.AdminServlet;
 import org.apache.axis.transport.http.AxisServlet;

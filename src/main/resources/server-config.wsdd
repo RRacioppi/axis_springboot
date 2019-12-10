@@ -26,7 +26,7 @@
    <parameter name="wsdlTargetNamespace" value="http://www.examples.com/wsdl/HelloService.wsdl"/>
    <parameter name="wsdlServiceElement" value="Hello_Service"/>
    <parameter name="wsdlServicePort" value="Hello_Port"/>
-   <parameter name="className" value="local.service.Service_Hello_BindingImpl"/>
+   <parameter name="className" value="com.example.service.Service_Hello_BindingImpl"/>
    <parameter name="wsdlPortType" value="Hello_PortType"/>
    <parameter name="typeMappingVersion" value="1.1"/>
    <operation name="sayHello" qname="operNS:sayHello" xmlns:operNS="urn:examples:helloservice" returnQName="greeting" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="sayHello" >
