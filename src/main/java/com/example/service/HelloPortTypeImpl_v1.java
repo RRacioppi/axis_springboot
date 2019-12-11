@@ -2,7 +2,6 @@ package com.example.service;
 
 import com.examples.www.wsdl.HelloService.v1.HelloPortType_v1;
 import com.examples.www.wsdl.HelloService.v1.HelloService_v1Locator;
-
 import java.rmi.RemoteException;
 import javax.xml.rpc.ServiceException;
 
