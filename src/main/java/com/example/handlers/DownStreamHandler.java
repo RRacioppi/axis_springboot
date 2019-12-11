@@ -12,9 +12,8 @@ public class DownStreamHandler extends BasicHandler {
     }
 
     public void invoke(MessageContext msgContext) throws AxisFault {
-        log.info("Retrieving JWT for downstream");
         String authorization_header = JWTThreadLocal.getJwt().get();
         msgContext.getMessage().getMimeHeaders().addHeader("Authorization", authorization_header);
-        log.info("Retrieved: JWT for downstream: " + authorization_header);
+        log.info("Retrieved: Authorization Header for downstream: " + authorization_header);
     }
 }

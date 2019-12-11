@@ -12,7 +12,7 @@ public class JWTHandler extends BasicHandler {
     }
 
     public void invoke(MessageContext msgContext) throws AxisFault {
-        log.info("Received Request: "+msgContext.getMessage());
+        // Questa operazione è essere fatta anche da ServletFilter
         String[] authorization_header = msgContext.getMessage().getMimeHeaders().getHeader("Authorization");
         if(authorization_header!=null) {
             JWTThreadLocal.getJwt().set(authorization_header[0]);
